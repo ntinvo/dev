@@ -10,8 +10,6 @@ spec:
     type: Git
     git:
       uri: https://github.ibm.com/Tin-Vo/dev.git
-    sourceSecret:
-      name: ibm-github-tinvo
     contextDir: .
 
   strategy:
@@ -21,15 +19,17 @@ spec:
       exposeDockerSocket: true
       from:
         kind: ImageStreamTag
-        name: stg.icr.io/cp/ibm-oms-enterprise/om-base:10.0.2409.0-amd64
+        name: om-base:10.0.2409.0-amd64
         namespace: ntinvo
       env:
         # Ensure that OMS_RHOS_CUSTOM_BUILD is set to "true" so that the entrypoint.sh of
         # om-base image considers this image as the base image for build.
         - name: OMS_RHOS_CUSTOM_BUILD
           value: 'true'
+        - name: LICENSE
+          value: 'accept'
 
   output:
     to:
       kind: ImageStreamTag
-      name: stg.icr.io/cp/ibm-oms-enterprise/om-base:10.0.2409.0-amd64-test
+      name: om-base:10.0.2409.0-amd64-test
