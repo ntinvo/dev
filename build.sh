@@ -9,5 +9,5 @@ cd /opt/ssfs/runtime/container-scripts/imagebuild
 # Tag and push the images to Red Hat OpenShift Container Platform Docker registry.
 
 (echo "{ \"auths\": " ; sudo cat $PUSH_DOCKERCFG_PATH/.dockercfg ; echo "}") > /tmp/.dockercfg
-buildah push --tls-verify=false --authfile=/tmp/.dockercfg ${OUTPUT_REGISTRY}/oms-base:latest
-buildah push --tls-verify=false --authfile=/tmp/.dockercfg ${OUTPUT_REGISTRY}/oms-agent:latest
+buildah push --tls-verify=false --authfile=/tmp/.dockercfg ${OUTPUT_REGISTRY}/oms-base:10.0
+buildah push --tls-verify=false --authfile=/tmp/.dockercfg ${OUTPUT_REGISTRY}/oms-agent:10.0

@@ -33,7 +33,7 @@ spec:
         # - name: REPO
         #   value: 'image-registry.openshift-image-registry.svc:5000/ntinvo'
 
-  # output:
-  #   to:
-  #     kind: ImageStreamTag
-  #     name: om-base:10.0.2409.0-amd64-test
+  output:
+    to:
+      kind: ImageStreamTag
+      name: om-base:10.0.2409.0-amd64-test
