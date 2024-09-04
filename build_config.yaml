@@ -30,8 +30,10 @@ spec:
           value: 'true'
         - name: LICENSE
           value: 'accept'
-        # - name: REPO
-        #   value: 'image-registry.openshift-image-registry.svc:5000/ntinvo'
+        - name: REPO
+          value: 'image-registry.openshift-image-registry.svc:5000/ntinvo'
+        - name: MODE
+          value: 'agent,base,app'
 
   output:
     to:

@@ -2,12 +2,19 @@
 
 # add your customization script here.
 
+export REPO=${REPO:-"localhost"}
+export MODE=${MODE:-"base,agent"}
+export WAR_FILES=${WAR_FILES:-"smcfs"}
+
+# Go to the directory where the script is located
 cd /opt/ssfs/runtime/container-scripts/imagebuild
-./generateImages.sh --REPO="${OUTPUT_REGISTRY}/ntinvo" --MODE=base,agent --WAR_FILES=smcfs --EXPORT=false
 
-# Add authentication to access the Red Hat OpenShift Container Platform Docker registry. 
-# Tag and push the images to Red Hat OpenShift Container Platform Docker registry.
+# Generate the images
+./generateImages.sh --REPO=$REPO --MODE=$MODE --WAR_FILES=$WAR_FILES --EXPORT=false
 
+# Push the images to the registry
 (echo "{ \"auths\": " ; sudo cat $PUSH_DOCKERCFG_PATH/.dockercfg ; echo "}") > /tmp/.dockercfg
-buildah push --tls-verify=false --authfile=/tmp/.dockercfg ${OUTPUT_REGISTRY}/ntinvo/om-base:10.0
-buildah push --tls-verify=false --authfile=/tmp/.dockercfg ${OUTPUT_REGISTRY}/ntinvo/om-agent:10.0
+for i in $(echo $MODE | tr "," "\n"); do
+  echo "Pushing image $REPO/om-$i:10.0"
+  buildah push --tls-verify=false --authfile=/tmp/.dockercfg $REPO/om-$i:10.0
+done
