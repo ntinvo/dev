@@ -3,7 +3,7 @@
 # add your customization script here.
 
 cd /opt/ssfs/runtime/container-scripts/imagebuild
-./generateImages.sh --MODE=app --WAR_FILES=smcfs --EXPORT=false
+./generateImages.sh --MODE=base,agent --WAR_FILES=smcfs --EXPORT=false
 
 # Add authentication to access the Red Hat OpenShift Container Platform Docker registry. 
 # Tag and push the images to Red Hat OpenShift Container Platform Docker registry.
