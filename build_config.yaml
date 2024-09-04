@@ -1,0 +1,35 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: oms-images-build
+  namespace: ntinvo
+spec:
+  serviceAccount: default
+
+  source:
+    type: Git
+    git:
+      uri: https://github.ibm.com/Tin-Vo/dev.git
+    sourceSecret:
+      name: ibm-github-tinvo
+    contextDir: .
+
+  strategy:
+    type: Custom
+    customStrategy:
+      forcePull: true
+      exposeDockerSocket: true
+      from:
+        kind: ImageStreamTag
+        name: stg.icr.io/cp/ibm-oms-enterprise/om-base:10.0.2409.0-amd64
+        namespace: ntinvo
+      env:
+        # Ensure that OMS_RHOS_CUSTOM_BUILD is set to "true" so that the entrypoint.sh of
+        # om-base image considers this image as the base image for build.
+        - name: OMS_RHOS_CUSTOM_BUILD
+          value: 'true'
+
+  output:
+    to:
+      kind: ImageStreamTag
+      name: stg.icr.io/cp/ibm-oms-enterprise/om-base:10.0.2409.0-amd64-test
