@@ -3,7 +3,7 @@
 # add your customization script here.
 
 export REPO=${REPO:-"localhost"}
-export MODE=${MODE:-"base,agent"}
+export MODE=${MODE:-"app"}
 export WAR_FILES=${WAR_FILES:-"smcfs"}
 
 # Go to the directory where the script is located

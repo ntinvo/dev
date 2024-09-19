@@ -33,9 +33,9 @@ spec:
         - name: REPO
           value: 'image-registry.openshift-image-registry.svc:5000/ntinvo'
         - name: MODE
-          value: 'agent,base,app'
+          value: 'app'
 
   output:
     to:
       kind: ImageStreamTag
-      name: om-base:10.0.2409.0-amd64-test
+      name: dummy:latest
