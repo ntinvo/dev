@@ -10,9 +10,10 @@ spec:
     type: Git
     git:
       uri: https://github.com/ntinvo/dev.git
+      ref: test
     sourceSecret:
       name: ibm-github-tinvo
-    contextDir: .
+    contextDir: test
 
   strategy:
     type: Custom
