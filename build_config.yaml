@@ -38,4 +38,4 @@ spec:
   output:
     to:
       kind: ImageStreamTag
-      name: dummy:latest
+      name: om-base:latest

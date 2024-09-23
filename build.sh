@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # add your customization script here.
+sudo -u omsuser /bin/bash << 'EOF'
 
 export REPO=${REPO:-"localhost"}
 export MODE=${MODE:-"app"}
@@ -18,3 +19,5 @@ for i in $(echo $MODE | tr "," "\n"); do
   echo "Pushing image $REPO/om-$i:10.0"
   buildah push --tls-verify=false --authfile=/tmp/.dockercfg $REPO/om-$i:10.0
 done
+
+EOF
