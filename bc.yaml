@@ -1,7 +1,7 @@
 apiVersion: build.openshift.io/v1
 kind: BuildConfig
 metadata:
-  name: oms-images-build
+  name: oms-images-build1
   namespace: ntinvo
 spec:
   serviceAccount: default
@@ -10,10 +10,10 @@ spec:
     type: Git
     git:
       uri: https://github.com/ntinvo/dev.git
-      ref: test
+      ref: 'test'
     sourceSecret:
       name: ibm-github-tinvo
-    contextDir: test
+    # contextDir:
 
   strategy:
     type: Custom
